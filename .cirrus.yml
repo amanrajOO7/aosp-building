@@ -1,17 +1,17 @@
 env: # Environt variable to pass to all tasks
     CIRRUS_CLONE_DEPTH: 1 # No need to clone with whole history
     CIRRUS_WORKING_DIR: "/tmp/ci" # Where to clone repo
-    rclone_config: "ENCRYPTED[cd748227cb60043e7066e426e166988ff5b0fb70341bcb4f661b5c255f19e90f6cb144de4ffdfdd18f201b0028a59b3a]"
-    CHATID: "ENCRYPTED[f74b235c319799d352465933e4171d71162267a08744c81a8c3273a4039aeaeb210ff2e5670df6e22a7e29ed70315f57]"
-    API_BOT: "ENCRYPTED[cb5d10e8b70521505e4141579d4b4042ab702ffba57d0e50051b9c5b7d93c37aa62c914add33fdaf8138e602ddbdbde9]"
+    rclone_config: "ENCRYPTED[d8dd3fff09c5dedf4d167795644365680d6bc5030a6379e5fcfb9a3a828d1180109f9a33df8e1dfe99c9938fc51a52e5]"
+    CHATID: "ENCRYPTED[e135ebb187213e114b7deaf7580424aa8e2988e2d5dd513dd678bf81c3e286ba5e828586b904e7a320afc339488e1c51]"
+    API_BOT: "ENCRYPTED[d27e7d34ac3b77864287f99fbc31ef9de2c9793ba6520273df7eeddd7e6e536201e786ace4ff80345a2293a19f888ba6]"
 
 task:
-    name: ItsVixano
+    name: superior-beryllium
     timeout_in: 120m
     container:
       image: apon77/aosp:latest
       cpu: 16
-      memory: 24G
+      memory: 48G
     download_ccache_background_script:
       - ./download_ccache
     sync_script:

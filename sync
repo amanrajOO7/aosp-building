@@ -1,25 +1,28 @@
 #!/bin/bash
 
-MANIFEST=git://github.com/crdroidandroid/android.git
-BRANCH=11.0
+MANIFEST=https://github.com/Corvus-R/android_manifest.git
+BRANCH=11
 
 mkdir -p /tmp/rom
 cd /tmp/rom
 
 # Repo init command, that -device,-mips,-darwin,-notdefault part will save you more time and storage to sync, add more according to your rom and choice. Optimization is welcomed! Let's make it quit, and with depth=1 so that no unnecessary things.
 repo init --no-repo-verify --depth=1 -u "$MANIFEST" -b "$BRANCH" -g default,-device,-mips,-darwin,-notdefault
-git config --global user.name ItsVixano
-git config --global user.email vixanonew@gmail.com
+git config --global user.name "Aman Singh"
+git config --global user.email "amankumarsingh1412@gmail.com"
 
 # Sync source with -q, no need unnecessary messages, you can remove -q if want! try with -j30 first, if fails, it will try again with -j8
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # Sync stuffs
-find hardware/qcom-caf/msm8998/display hardware/qcom-caf/msm8998/audio hardware/qcom-caf/msm8998/media .repo/ -delete
-git clone https://github.com/LineageOS/android_hardware_qcom_display --single-branch -b lineage-18.1-caf-msm8998 hardware/qcom-caf/msm8998/display --depth=1
-git clone https://github.com/LineageOS/android_hardware_qcom_audio --single-branch -b lineage-18.1-caf-msm8998 hardware/qcom-caf/msm8998/audio --depth=1
-git clone https://github.com/LineageOS/android_hardware_qcom_media --single-branch -b lineage-18.1-caf-msm8998 hardware/qcom-caf/msm8998/media --depth=1
-
-git clone https://github.com/ItsVixano/android_device_xiaomi_whyred --single-branch -b eleven device/xiaomi/whyred --depth=1
-git clone https://github.com/ItsVixano/android_vendor_xiaomi_whyred --single-branch -b eleven vendor/xiaomi/whyred --depth=1
-git clone https://github.com/subhajeetmuhuri/kernel_xiaomi_sdm660 --single-branch -b lineage-18.1-4.4 kernel/xiaomi/whyred --depth=1 
+git clone https://github.com/amanrajOO7/android_device_xiaomi_beryllium -b corvus device/xiaomi/beryllium --depth=1
+git clone https://github.com/amanrajOO7/android_device_xiaomi_sdm845-common -b corvus device/xiaomi/sdm845-common --depth=1
+git clone https://github.com/amanrajOO7/proprietary_vendor_xiaomi -b superior vendor/xiaomi --depth=1
+git clone https://github.com/GZR-Kernels/Optimus_Drunk_Beryllium -b 11.0 kernel/xiaomi/sdm845 --depth=1
+git clone https://github.com/kdrag0n/proton-clang --depth=1
+rm -rf hardware/qcom-caf/sdm845
+git clone https://github.com/ArrowOS/android_hardware_qcom_media -b arrow-11.0-caf-sdm845 hardware/qcom-caf/sdm845/media --depth=1
+git clone https://github.com/ArrowOS/android_hardware_qcom_display -b arrow-11.0-caf-sdm845 hardware/qcom-caf/sdm845/display --depth=1
+git clone https://github.com/ArrowOS/android_hardware_qcom_audio -b arrow-11.0-caf-sdm845 hardware/qcom-caf/sdm845/audio --depth=1
+rm -rf vendor/qcom/opensource/power
+git clone https://github.com/ArrowOS/android_vendor_qcom_opensource_power -b arrow-11.0 vendor/qcom/opensource/power --depth=1
